@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <header-component />
+    <router-view />
+    <footer-component />
   </div>
 </template>
 
 <script>
+import HeaderComponent from './components/shared/header'
+import FooterComponent from './components/shared/footer'
+
 export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
-  }
+  components: {
+    HeaderComponent,
+    FooterComponent,
+  },
 }
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
 </style>
