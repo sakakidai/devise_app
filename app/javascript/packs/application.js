@@ -18,6 +18,7 @@ import router from '../routes'
 import Vuetify from "vuetify"
 import App from '../app'
 
+import '@mdi/font/css/materialdesignicons.css'
 import "vuetify/dist/vuetify.min.css"
 import '../assets/css/application'
 
@@ -25,11 +26,17 @@ import '../assets/css/application'
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 
+const vuetify = new Vuetify({
+  icons: {
+    iconfont: 'mdi'
+  }
+})
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     // store: new Vuex.Store(store),
     router,
-    vuetify: new Vuetify(),
+    vuetify,
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)
