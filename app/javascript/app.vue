@@ -1,7 +1,11 @@
 <template>
   <v-app id="app">
     <header-component />
+    <br>
+    <br>
     <router-view />
+    <br>
+    <br>
     <footer-component />
   </v-app>
 </template>
