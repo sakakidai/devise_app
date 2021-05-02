@@ -1,8 +1,9 @@
 <template>
-  <header>
+  <div>
     <v-app-bar
       app
       dark
+      fixed
       color="#f5c11e"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -29,7 +30,7 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-  </header>
+  </div>
 </template>
 
 <script>

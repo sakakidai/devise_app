@@ -1,11 +1,9 @@
 <template>
   <v-app id="app">
     <header-component />
-    <br>
-    <br>
-    <router-view />
-    <br>
-    <br>
+    <v-main>
+      <router-view />
+    </v-main>
     <footer-component />
   </v-app>
 </template>
@@ -18,7 +16,7 @@ export default {
   components: {
     HeaderComponent,
     FooterComponent,
-  },
+  }
 }
 </script>
 
