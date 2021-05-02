@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       icons: [
         'mdi-facebook',

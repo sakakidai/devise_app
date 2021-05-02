@@ -2,22 +2,24 @@
   <v-app id="app">
     <header-component />
     <v-main>
-      <router-view />
+      <v-container>
+        <router-view />
+      </v-container>
     </v-main>
     <footer-component />
   </v-app>
 </template>
 
 <script>
-import HeaderComponent from './components/shared/header'
-import FooterComponent from './components/shared/footer'
+  import HeaderComponent from './components/shared/TheFooter'
+  import FooterComponent from './components/shared/TheFooter'
 
-export default {
-  components: {
-    HeaderComponent,
-    FooterComponent,
+  export default {
+    components: {
+      HeaderComponent,
+      FooterComponent,
+    }
   }
-}
 </script>
 
 <style scoped>
