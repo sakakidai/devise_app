@@ -15,16 +15,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import store from '../store'
 import router from '../routes'
-import Vuetify from "vuetify"
+import Vuetify from 'vuetify'
 import App from '../app'
 
 import '@mdi/font/css/materialdesignicons.css'
-import "vuetify/dist/vuetify.min.css"
+import 'vuetify/dist/vuetify.min.css'
 import '../assets/css/application'
 
 // Vue.use(Vuex)
-Vue.use(Vuetify)
 Vue.use(VueRouter)
+Vue.use(Vuetify)
 
 const vuetify = new Vuetify({
   icons: {
