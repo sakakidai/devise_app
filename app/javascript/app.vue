@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import HeaderComponent from './components/shared/TheFooter'
+  import HeaderComponent from './components/shared/TheHeader'
   import FooterComponent from './components/shared/TheFooter'
 
   export default {

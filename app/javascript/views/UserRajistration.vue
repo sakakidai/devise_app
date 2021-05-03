@@ -6,6 +6,9 @@
         v-slot="{ passed, failed }"
       >
         <form @submit.prevent="submit">
+          <v-subheader>
+            名前
+          </v-subheader>
           <validation-provider
             v-slot="{ errors }"
             name="Name"
@@ -13,15 +16,16 @@
           >
             <v-text-field
               v-model="name"
-              :counter="10"
+              :counter="255"
               :error-messages="errors"
-              label="Name"
-              requi
               outlined
               placeholder="Sakaki Dai"
             ></v-text-field>
           </validation-provider>
 
+          <v-subheader>
+            メールアドレス
+          </v-subheader>
           <validation-provider
             v-slot="{ errors }"
             name="email"
@@ -30,26 +34,27 @@
             <v-text-field
               v-model="email"
               :error-messages="errors"
-              label="E-mail"
               required
               outlined
               placeholder="sakakidai@example.com"
             ></v-text-field>
           </validation-provider>
 
+          <v-subheader>
+            パスワード
+          </v-subheader>
           <validation-provider
             v-slot="{ errors }"
             name="Password"
-            rules="required|min:8"
+            rules="required|min:8|max:32"
           >
             <v-text-field
               v-model="password"
               :error-messages="errors"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               :type="showPassword ? 'text' : 'password'"
-              label="Password"
               hint="At least 8 characters"
-              :counter = "8"
+              counter="32"
               outlined
               @click:append="showPassword = !showPassword"
             ></v-text-field>
@@ -72,15 +77,9 @@
 </template>
 
 <script>
-  import { required, digits, email, max, regex, min } from 'vee-validate/dist/rules'
+  import { required, email, max, regex, min } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
-
   setInteractionMode('eager')
-
-  extend('digits', {
-  ...digits,
-  message: '{_field_} needs to be {length} digits. ({_value_})',
-  })
 
   extend('required', {
   ...required,
