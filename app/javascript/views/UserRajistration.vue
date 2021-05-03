@@ -15,7 +15,7 @@
             rules="required|max:255"
           >
             <v-text-field
-              v-model="name"
+              v-model="user.name"
               :counter="255"
               :error-messages="errors"
               outlined
@@ -32,7 +32,7 @@
             rules="required|email"
           >
             <v-text-field
-              v-model="email"
+              v-model="user.email"
               :error-messages="errors"
               required
               outlined
@@ -49,7 +49,7 @@
             rules="required|min:8|max:32"
           >
             <v-text-field
-              v-model="password"
+              v-model="user.password"
               :error-messages="errors"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               :type="showPassword ? 'text' : 'password'"
@@ -113,15 +113,21 @@
     },
     data () {
       return {
-        name: '',
-        email: '',
-        password: '',
+        user: {
+          name: '',
+          email: '',
+          password: '',
+        },
         showPassword: false
       }
     },
     methods: {
-      submit () {
-        this.$refs.observer.validate()
+      async submit () {
+        await this.$refs.observer.validate()
+        console.log('submit!!')
+        this.$axios.post('/api/v1/auth', this.user).then((response) => {
+          alert('success!!')
+        })
       },
       clear () {
         this.name = ''

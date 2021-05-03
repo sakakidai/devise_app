@@ -16,6 +16,8 @@ import VueRouter from 'vue-router'
 // import store from '../store'
 import router from '../routes'
 import Vuetify from 'vuetify'
+import axios from "axios"
+import VueAxiosPlugin from "./vue-axios"
 import App from '../app'
 
 import '@mdi/font/css/materialdesignicons.css'
@@ -25,6 +27,8 @@ import '../assets/css/application'
 // Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(Vuetify)
+Vue.use(VueAxiosPlugin, { axios: axios })
+Vue.prototype.$axios = axios
 
 const vuetify = new Vuetify({
   icons: {
