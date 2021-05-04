@@ -11,7 +11,7 @@
           </v-subheader>
           <validation-provider
             v-slot="{ errors }"
-            name="Name"
+            name="名前"
             rules="required|max:255"
           >
             <v-text-field
@@ -28,7 +28,7 @@
           </v-subheader>
           <validation-provider
             v-slot="{ errors }"
-            name="email"
+            name="メールアドレス"
             rules="required|email"
           >
             <v-text-field
@@ -45,7 +45,7 @@
           </v-subheader>
           <validation-provider
             v-slot="{ errors }"
-            name="Password"
+            name="パスワード"
             rules="required|min:8|max:32"
           >
             <v-text-field

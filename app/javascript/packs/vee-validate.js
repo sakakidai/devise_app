@@ -1,38 +1,16 @@
 import Vue from 'vue'
-import { required, digits, email, max, regex, min } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import { required, email, max, min } from 'vee-validate/dist/rules';
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode, localize } from 'vee-validate';
+import ja from 'vee-validate/dist/locale/ja.json';
 
-setInteractionMode('eager')
+setInteractionMode('eager');
 
-extend('digits', {
-  ...digits,
-  message: '{_field_} needs to be {length} digits. ({_value_})',
-})
+localize('ja', ja);
 
-extend('required', {
-  ...required,
-  message: '{_field_} can not be empty',
-})
-
-extend('max', {
-  ...max,
-  message: '{_field_} may not be greater than {length} characters',
-})
-
-extend('regex', {
-  ...regex,
-  message: '{_field_} {_value_} does not match {regex}',
-})
-
-extend('email', {
-  ...email,
-  message: 'Email must be valid',
-})
-
-extend('min', {
-  ...min,
-  message: 'The {_field_} field must be {length} or more',
-})
+extend('required', required);
+extend('email', email);
+extend('max', max);
+extend('min', min);
 
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
