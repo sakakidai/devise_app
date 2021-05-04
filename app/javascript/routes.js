@@ -1,7 +1,10 @@
+import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from './views/Home'
 import SignUp from './views/UserRajistration'
 import Login from './views/UserLogin'
+
+Vue.use(VueRouter)
 
 const routes = [
   {

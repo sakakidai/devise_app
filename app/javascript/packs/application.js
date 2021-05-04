@@ -12,29 +12,18 @@
 
 import Vue from 'vue'
 // import Vuex from 'vuex'
-import VueRouter from 'vue-router'
 // import store from '../store'
 import router from '../routes'
-import Vuetify from 'vuetify'
-import axios from "axios"
-import VueAxiosPlugin from "./vue-axios"
+import vuetify from './vuetify'
+import axios from './axios'
+import './vee-validate'
 import App from '../app'
-
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
 import '../assets/css/application'
 
 // Vue.use(Vuex)
-Vue.use(VueRouter)
-Vue.use(Vuetify)
-Vue.use(VueAxiosPlugin, { axios: axios })
 Vue.prototype.$axios = axios
-
-const vuetify = new Vuetify({
-  icons: {
-    iconfont: 'mdi'
-  }
-})
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

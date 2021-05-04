@@ -2,6 +2,8 @@ import Vue from 'vue'
 import { required, digits, email, max, regex, min } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 
+setInteractionMode('eager')
+
 extend('digits', {
   ...digits,
   message: '{_field_} needs to be {length} digits. ({_value_})',
@@ -32,7 +34,5 @@ extend('min', {
   message: 'The {_field_} field must be {length} or more',
 })
 
-Vue.component('ValidationProvider', ValidationProvider)
-Vue.component('ValidationObserver', ValidationObserver)
-// Vue.component('setInteractionMode', setInteractionMode)
-setInteractionMode('eager')
+Vue.component('ValidationProvider', ValidationProvider);
+Vue.component('ValidationObserver', ValidationObserver);
