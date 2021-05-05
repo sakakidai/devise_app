@@ -5,4 +5,11 @@ const instance = axios.create({
     "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
   }
 });
+// 書いている途中
+// instance.interceptors.response.use((response) => {
+//   if (response.headers['access-token']) {
+
+//   }
+// })
+
 export default instance;

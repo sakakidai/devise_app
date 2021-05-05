@@ -52,7 +52,6 @@
     <h1>Welcome to Vue on Rails Template</h1>
     <h1>Welcome to Vue on Rails Template</h1>
     <h1>End</h1>
-
   </div>
 </template>
 

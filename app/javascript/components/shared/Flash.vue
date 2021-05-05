@@ -1,0 +1,14 @@
+<template>
+  <div
+    v-show="$store.state.flash"
+  >
+    <v-alert
+      color="orange"
+      outlined
+      text
+      type="success"
+    >
+      ログインしました
+    </v-alert>
+  </div>
+</template>
