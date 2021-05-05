@@ -1,7 +1,11 @@
 <template>
   <div>
-
-  　<!-- ログインフォーム -->
+    <div>{{$store.state.dialog}}</div>
+    <v-btn
+      @click="showDialog()"
+    >
+      Click Me
+    </v-btn>
     <v-row justify="center">
       <v-col cols="12" sm="9" md="8" lg="6">
         <validation-observer
@@ -77,40 +81,11 @@
         </validation-observer>
       </v-col>
     </v-row>
-
-  　<!-- ログイン時のダイアログ -->
-    <v-row justify="center">
-      <v-dialog
-        v-model="dialog"
-        persistent
-        max-width="290"
-      >
-        <v-card>
-          <v-card-title class="headline">
-            新規登録
-          </v-card-title>
-          <v-card-text>メールを送信しましたのでご確認ください</v-card-text>
-          <v-row
-            justify="center"
-            class="pb-3"
-          >
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                elevation="2"
-                @click="dialog = false"
-              >
-                閉じる
-              </v-btn>
-            </v-card-actions>
-          </v-row>
-        </v-card>
-      </v-dialog>
-    </v-row>
   </div>
 </template>
 
 <script>
+  import { mapMutations } from "vuex";
   export default {
     data () {
       return {
@@ -131,8 +106,8 @@
           .post('/api/v1/auth', this.user)
           .then((response) => {
             console.log('lagin!!')
-            this.clear()
-            this.dialog = true
+            this.$router.push('/')
+            this.showDialog()
           })
           .catch(error => {
             console.log(error.response)
@@ -144,7 +119,8 @@
         this.email = ''
         this.password = ''
         this.$refs.observer.reset()
-      }
+      },
+      ...mapMutations(['showDialog'])
     }
   }
 </script>
