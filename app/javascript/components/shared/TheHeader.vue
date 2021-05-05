@@ -7,8 +7,42 @@
       color="#f5c11e"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>HeaderComponent</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link
+          to="/"
+          class="router-link"
+        >
+          HeaderComponent
+        </router-link>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <router-link
+        to="/login"
+        class="router-link"
+      >
+        <v-btn
+          color="#fff"
+          depressed
+          outlined
+        >
+          ログイン
+        </v-btn>
+      </router-link>
+      <router-link
+        to="/signup"
+        class="router-link"
+      >
+        <v-btn
+          color="#fff"
+          depressed
+          outlined
+          class="ml-4"
+        >
+          新規登録
+        </v-btn>
+      </router-link>
     </v-app-bar>
+
     <v-navigation-drawer
       v-model="drawer"
       fixed
@@ -68,4 +102,8 @@ export default {
 </script>
 
 <style scoped>
+.router-link {
+  text-decoration: none;
+  color: #fff;
+}
 </style>
