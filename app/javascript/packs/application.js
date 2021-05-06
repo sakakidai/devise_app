@@ -23,6 +23,7 @@ import '../assets/css/application';
 
 Vue.prototype.$axios = axios;
 
+store.dispatch('autoLogin');
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     router,

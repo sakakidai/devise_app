@@ -62,8 +62,6 @@
 
 <script>
   import { mapActions } from "vuex";
-  import { pick } from "lodash";
-
   export default {
     data () {
       return {
@@ -77,20 +75,9 @@
     methods: {
       async submit () {
         await this.$refs.observer.validate()
-        console.log('submit!!')
-        this.$axios
-          .post('/api/v1/auth/sign_in', this.user)
-          .then((response) => {
-            const authHeaders = pick(response.headers,'access-token','client','expiry','uid','token-type')
-            console.log(authHeaders)
-            this.$store.commit('auth', authHeaders)
-            this.$router.push('/')
-            this.showFlash()
-          })
-          .catch(error => {
-            console.log(error.response)
-            error.response
-          })
+        this.$store.dispatch('login', this.user)
+        this.$router.push('/')
+        this.showFlash()
       },
       clear () {
         this.email = ''
