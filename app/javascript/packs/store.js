@@ -14,7 +14,8 @@ const store = new Vuex.Store({
   },
   getters: {
     user: state => state.user,
-    auth: state => state.auth
+    auth: state => state.auth,
+    authToken: state => state.authToken
   },
   mutations: {
     showDialog(state) {
