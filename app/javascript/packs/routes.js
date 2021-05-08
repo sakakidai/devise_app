@@ -13,7 +13,7 @@ const routes = [
     name: 'home',
     component: HomePage,
     beforeEnter(to, from, next) {
-      if (store.getters.authToken) {
+      if (store.getters.accessToken) {
         next()
       } else {
         next('/login')
@@ -25,7 +25,7 @@ const routes = [
     name: 'signup',
     component: SignUp,
     beforeEnter(to, from, next) {
-      if (store.getters.authToken) {
+      if (store.getters.accessToken) {
         next('/')
       } else {
         next()
@@ -37,7 +37,7 @@ const routes = [
     name: 'login',
     component: Login,
     beforeEnter(to, from, next) {
-      if (store.getters.authToken) {
+      if (store.getters.accessToken) {
         next('/')
       } else {
         next()

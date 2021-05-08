@@ -61,7 +61,6 @@
 </template>
 
 <script>
-  import { mapActions } from "vuex";
   export default {
     data () {
       return {
@@ -76,15 +75,12 @@
       async submit () {
         await this.$refs.observer.validate()
         this.$store.dispatch('login', this.user)
-        this.$router.push('/')
-        this.showFlash()
       },
       clear () {
         this.email = ''
         this.password = ''
         this.$refs.observer.reset()
-      },
-      ...mapActions(['showFlash'])
+      }
     }
   }
 </script>

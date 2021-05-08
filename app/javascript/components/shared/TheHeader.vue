@@ -16,31 +16,43 @@
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <router-link
-        to="/login"
-        class="router-link"
-      >
+      <template v-if="isAuthenticated">
         <v-btn
           color="#fff"
           depressed
           outlined
+          @click="logout()"
         >
-          ログイン
+          ログアウト
         </v-btn>
-      </router-link>
-      <router-link
-        to="/signup"
-        class="router-link"
-      >
-        <v-btn
-          color="#fff"
-          depressed
-          outlined
-          class="ml-4"
+      </template>
+      <template v-if="!isAuthenticated">
+        <router-link
+          to="/login"
+          class="router-link"
         >
-          新規登録
-        </v-btn>
-      </router-link>
+          <v-btn
+            color="#fff"
+            depressed
+            outlined
+          >
+            ログイン
+          </v-btn>
+        </router-link>
+        <router-link
+          to="/signup"
+          class="router-link"
+        >
+          <v-btn
+            color="#fff"
+            depressed
+            outlined
+            class="ml-4"
+          >
+            新規登録
+          </v-btn>
+        </router-link>
+      </template>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -91,6 +103,16 @@ export default {
           url: '#'
         },
       ]
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+    }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.accessToken !== null;
     }
   },
   watch: {

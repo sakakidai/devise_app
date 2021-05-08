@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from './axios';
-import { pick } from "lodash";
+// import { pick } from "lodash";
+import router from './routes';
 
 Vue.use(Vuex);
 
@@ -10,12 +11,19 @@ const store = new Vuex.Store({
     dialog: false,
     flash: false,
     user: null,
-    authToken: {},
+    authToken: {
+      accessToken: null,
+      client: null,
+      expiry: null,
+      uid: null,
+      tokenType: null
+    },
   },
   getters: {
     user: state => state.user,
     auth: state => state.auth,
-    authToken: state => state.authToken
+    authToken: state => state.authToken,
+    accessToken: state => state.authToken.accessToken
   },
   mutations: {
     showDialog(state) {
@@ -33,30 +41,32 @@ const store = new Vuex.Store({
     user (state, value) {
       state.user = value
     },
-    auth (state, value) {
-      state.auth = value
-    },
     updateAuthToken(state, authToken) {
       state.authToken = authToken;
     }
   },
   actions: {
     autoLogin({ commit }) {
-      const authToken = JSON.parse(localStorage.getItem("auth"));
+      const authToken = JSON.parse(localStorage.getItem("authToken"));
       if (!authToken) return;
       commit('updateAuthToken', authToken)
     },
-    login({ commit }, user) {
+    login({ dispatch, commit }, user) {
       axios
         .post('/api/v1/auth/sign_in', user)
         .then((response) => {
-          const authHeaders = pick(response.headers,'access-token','client','expiry','uid','token-type')
-          console.log(authHeaders)
-          console.log(JSON.stringify(authHeaders))
+          const Headers = response.headers
+          const authHeaders = {
+            accessToken: Headers['access-token'],
+            client: Headers['client'],
+            expiry: Headers['expiry'],
+            uid: Headers['uid'],
+            tokenType: Headers['token-type']
+          }
           commit('updateAuthToken', authHeaders)
-          localStorage.setItem('authToken', JSON.stringify(authHeaders))
-          // this.$router.push('/')
-          // this.showFlash()
+          localStorage.setItem('authToken', authHeaders)
+          router.push('/')
+          dispatch('showFlash')
         })
         .catch(error => {
           console.log('error!!')
@@ -64,11 +74,37 @@ const store = new Vuex.Store({
           error.response
         });
     },
+    logout({ commit } ) {
+      commit('updateAuthToken', {});
+      localStorage.removeItem('authToken');
+      router.push('/login');
+    },
+    deleteUser({ state, commit }) {
+      const authHeaders = state.authToken
+      axios
+        .delete('/api/v1/auth', {
+          headers: {
+            'access-token': authHeaders['access-token'],
+            'uid': authHeaders['uid'],
+            'client': authHeaders['client']
+          }
+        })
+        .then((response) => {
+          commit('updateAuthToken', {});
+          localStorage.removeItem('authToken');
+          router.push('/login');
+        })
+        .catch(error => {
+          console.log('error!!!!');
+          console.log(error.response);
+          error.response
+        });
+    },
     showFlash({ commit }) {
       commit('showFlash');
       setTimeout(() => {
         commit('hideFlash')
-      }, 2000)
+      }, 2000);
     }
   }
 });
